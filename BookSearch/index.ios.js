@@ -8,11 +8,10 @@ import FeaturedPage from './js/pages/FeaturedPage';
 import SearchPage from './js/pages/SearchPage';
 
 class BookSearch extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab: 'featured'
+            selectedTab: 'featured',
         };
     }
 
@@ -20,23 +19,23 @@ class BookSearch extends Component {
         return (
             <TabBarIOS selectedTab={this.state.selectedTab}>
                 <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'featured'}
-                    systemIcon={'featured'}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'featured'
+                            selectedTab: 'featured',
                         });
-                    }}>
+                    }}
+                    selected={this.state.selectedTab === 'featured'}
+                    systemIcon={'featured'} >
                     <FeaturedPage/>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'search'}
-                    systemIcon={'search'}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'search'
+                            selectedTab: 'search',
                         });
-                    }}>
+                    }}
+                    selected={this.state.selectedTab === 'search'}
+                    systemIcon={'search'} >
                     <SearchPage/>
                 </TabBarIOS.Item>
             </TabBarIOS>

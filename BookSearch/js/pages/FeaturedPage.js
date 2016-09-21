@@ -11,16 +11,14 @@ import BookList from '../components/BookList';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     loading: {
-       flex: 1,
        alignItems: 'center',
-       justifyContent: 'center'
+       flex: 1,
+       justifyContent: 'center',
     }
 });
-
-const REQUEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction';
 
 export default class FeaturedPage extends Component {
     constructor(props) {
@@ -36,7 +34,7 @@ export default class FeaturedPage extends Component {
     }
 
     fetchData() {
-       fetch(REQUEST_URL)
+       fetch('https://www.googleapis.com/books/v1/volumes?q=subject:fiction')
        .then((response) => response.json())
        .then((responseData) => {
            this.setState({
@@ -50,7 +48,7 @@ export default class FeaturedPage extends Component {
     renderLoadingText() {
         return (
             <View style={styles.loading}>
-                <ActivityIndicator size='large'/>
+                <ActivityIndicator size='large' />
                 <Text>Loading books...</Text>
             </View>
         );

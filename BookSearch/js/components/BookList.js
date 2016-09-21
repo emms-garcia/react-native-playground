@@ -10,34 +10,34 @@ import {
 
 const styles = StyleSheet.create({
     author: {
-        color: '#656565'
+        color: '#656565',
     },
     container: {
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        padding: 10
+        padding: 10,
     },
     listView: {
-       backgroundColor: '#F5FCFF'
+       backgroundColor: '#F5FCFF',
     },
     rightContainer: {
-        flex: 1
+        flex: 1,
     },
     separator: {
+        backgroundColor: '#dddddd',
         height: 1,
-        backgroundColor: '#dddddd'
     },
     title: {
         fontSize: 20,
-        marginBottom: 8
+        marginBottom: 8,
     },
     thumbnail: {
-        width: 53,
         height: 81,
-        marginRight: 10
+        marginRight: 10,
+        width: 53,
     },
 });
 

@@ -8,8 +8,8 @@ import SearchBooks from '../components/SearchBooks';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    }
+        flex: 1,
+    },
 });
 
 export default class SearchPage extends Component {
