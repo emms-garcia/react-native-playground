@@ -4,7 +4,7 @@ import {
     StyleSheet,
 } from 'react-native';
 
-import SearchBooks from './SearchBooks';
+import SearchBooks from '../components/SearchBooks';
 
 const styles = StyleSheet.create({
     container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class Search extends Component {
+export default class SearchPage extends Component {
     render() {
         return (
             <NavigatorIOS

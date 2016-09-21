@@ -4,8 +4,8 @@ import {
     TabBarIOS,
 } from 'react-native';
 
-import Featured from './js/Featured';
-import Search from './js/Search';
+import FeaturedPage from './js/pages/FeaturedPage';
+import SearchPage from './js/pages/SearchPage';
 
 class BookSearch extends Component {
 
@@ -27,7 +27,7 @@ class BookSearch extends Component {
                             selectedTab: 'featured'
                         });
                     }}>
-                    <Featured/>
+                    <FeaturedPage/>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     selected={this.state.selectedTab === 'search'}
@@ -37,7 +37,7 @@ class BookSearch extends Component {
                             selectedTab: 'search'
                         });
                     }}>
-                    <Search/>
+                    <SearchPage/>
                 </TabBarIOS.Item>
             </TabBarIOS>
         );
