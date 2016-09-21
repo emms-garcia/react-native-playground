@@ -9,6 +9,9 @@ import {
 } from 'react-native';
 
 const styles = StyleSheet.create({
+    author: {
+        color: '#656565'
+    },
     container: {
         flex: 1,
         flexDirection: 'row',
@@ -17,27 +20,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
         padding: 10
     },
-    thumbnail: {
-        width: 53,
-        height: 81,
-        marginRight: 10
+    listView: {
+       backgroundColor: '#F5FCFF'
     },
     rightContainer: {
         flex: 1
-    },
-    title: {
-        fontSize: 20,
-        marginBottom: 8
-    },
-    author: {
-        color: '#656565'
     },
     separator: {
         height: 1,
         backgroundColor: '#dddddd'
     },
-    listView: {
-       backgroundColor: '#F5FCFF'
+    title: {
+        fontSize: 20,
+        marginBottom: 8
+    },
+    thumbnail: {
+        width: 53,
+        height: 81,
+        marginRight: 10
     },
 });
 
