@@ -8,6 +8,8 @@ import {
     View,
 } from 'react-native';
 
+import BookDetail from './BookDetail';
+
 const styles = StyleSheet.create({
     author: {
         color: '#656565',
@@ -50,9 +52,19 @@ export default class BookList extends Component {
         };
     }
 
+    showBookDetail(book) {
+        this.props.navigator.push({
+            component: BookDetail,
+            passProps: {book},
+            title: book.volumeInfo.title,
+        });
+    }
+
     renderBook(book) {
         return (
-            <TouchableHighlight>
+            <TouchableHighlight
+                onPress={() => this.showBookDetail(book)}
+                underlayColor='#dddddd'>
                 <View>
                     <View style={styles.container}>
                         <Image
