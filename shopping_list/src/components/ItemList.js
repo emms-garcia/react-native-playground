@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { ListView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import { fetchItems } from '../actions';
 import { Card, CardSection } from './common';
 import Item from './Item';
-import { itemProp } from '../Utils';
+import { itemProp } from '../utils';
 
 const styles = {
-  totalTextStyle: {
+  footerTextStyle: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  headerTextStyle: {
+    flex: 1,
+    fontSize: 18,
     textAlign: 'center',
   },
 };
@@ -18,6 +24,22 @@ class ItemList extends Component {
     items: React.PropTypes.arrayOf(itemProp),
   };
 
+  componentWillMount() {
+    this.props.fetchItems();
+    this.createDataSource(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps);
+  }
+
+  createDataSource({ items }) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
+    this.dataSource = ds.cloneWithRows(items);
+  }
+
   renderRow(item) {
     return <Item item={item} />;
   }
@@ -26,7 +48,6 @@ class ItemList extends Component {
     if (this.props.items.length) {
       return this.renderList();
     }
-
     return (
       <CardSection>
         <Text style={styles.totalTextStyle}>No Items</Text>
@@ -34,25 +55,43 @@ class ItemList extends Component {
     );
   }
 
-  renderList() {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-
+  renderFooter() {
     let total = 0;
     this.props.items.forEach((item) => {
       total += (item.quantity * item.price);
     });
+    return (
+      <CardSection>
+        <Text style={styles.footerTextStyle}>Total: ${total}</Text>
+      </CardSection>
+    );
+  }
 
+  renderHeader() {
+    return (
+      <CardSection>
+        <View style={{ flex: 2, height: 20 }}>
+          <Text style={styles.headerTextStyle}>Name</Text>
+        </View>
+        <View style={{ flex: 1, height: 20 }}>
+          <Text style={styles.headerTextStyle}>Price</Text>
+        </View>
+        <View style={{ flex: 1, height: 20 }}>
+          <Text style={styles.headerTextStyle}>Subtotal</Text>
+        </View>
+      </CardSection>
+    );
+  }
+
+  renderList() {
     return (
       <View>
         <ListView
-          dataSource={ds.cloneWithRows(this.props.items)}
+          dataSource={this.dataSource}
+          renderFooter={this.renderFooter.bind(this)}
+          renderHeader={this.renderHeader.bind(this)}
           renderRow={this.renderRow.bind(this)}
         />
-        <CardSection>
-          <Text style={styles.totalTextStyle}>Total: ${total}</Text>
-        </CardSection>
       </View>
     );
   }
@@ -72,4 +111,4 @@ const mapStateToProps = (state) => {
   return { items };
 };
 
-export default connect(mapStateToProps)(ItemList);
+export default connect(mapStateToProps, { fetchItems })(ItemList);

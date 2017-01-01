@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableHighlight, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { CardSection } from './common';
 
@@ -7,21 +7,11 @@ const styles = {
   divisionStyle: {
     borderColor: '#ddd',
     borderRightWidth: 1,
-    flex: 1,
+    height: 20,
   },
-  nameTextStyle: {
+  textStyle: {
     flex: 2,
-    fontSize: 15,
-    textAlign: 'center',
-  },
-  quantityTextStyle: {
-    flex: 1,
-    fontSize: 15,
-    textAlign: 'center',
-  },
-  priceTextStyle: {
-    flex: 1,
-    fontSize: 15,
+    fontSize: 17,
     textAlign: 'center',
   },
 };
@@ -29,24 +19,25 @@ const styles = {
 const Item = ({ item }) => {
   const {
     divisionStyle,
-    nameTextStyle,
-    quantityTextStyle,
-    priceTextStyle
+    textStyle,
   } = styles;
+
   return (
-    <TouchableWithoutFeedback onPress={() => Actions.itemEdit({ item })}>
+    <TouchableHighlight onPress={() => Actions.itemEdit({ item })}>
       <View>
         <CardSection>
-          <View style={divisionStyle}><Text style={nameTextStyle}>{item.name}</Text></View>
-          <View style={divisionStyle}>
-            <Text style={quantityTextStyle}>{item.quantity} x ${item.price}</Text>
+          <View style={{ ...divisionStyle, flex: 2 }}>
+            <Text style={textStyle}>{item.name} : {item.quantity}</Text>
           </View>
-          <View style={{ ...divisionStyle, borderRightWidth: 0 }}>
-            <Text style={priceTextStyle}>${item.price * item.quantity}</Text>
+          <View style={{ ...divisionStyle, flex: 1 }}>
+            <Text style={textStyle}>{item.price}</Text>
+          </View>
+          <View style={{ ...divisionStyle, flex: 1, borderRightWidth: 0 }}>
+            <Text style={textStyle}>${item.price * item.quantity}</Text>
           </View>
         </CardSection>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableHighlight>
   );
 };
 

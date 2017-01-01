@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardSection, Input } from './common';
 
-const ItemForm = ({ autoFocus, name, quantity, price, updateItemForm }) => {
+const ItemForm = ({ autoFocus, children, name, quantity, price, updateItemForm }) => {
   return (
     <Card>
       <CardSection>
@@ -33,6 +33,8 @@ const ItemForm = ({ autoFocus, name, quantity, price, updateItemForm }) => {
           value={price}
         />
       </CardSection>
+
+      { children }
     </Card>
   );
 };

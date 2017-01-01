@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { clearItemForm, createItem, updateItemForm } from '../actions';
 import { Button, Card, CardSection } from './common';
@@ -20,18 +19,17 @@ class ItemCreate extends Component {
     const { name, quantity, price } = this.props;
     if (name) {
       this.props.createItem({ name, quantity, price });
-      Actions.itemList({ type: 'reset' });
     }
   }
 
   render() {
     return (
       <Card>
-        <ItemForm autoFocus {...this.props} />
-
-        <CardSection>
-          <Button onPress={this.onCreate.bind(this)}>Add</Button>
-        </CardSection>
+        <ItemForm autoFocus {...this.props}>
+          <CardSection>
+            <Button onPress={this.onCreate.bind(this)}>Add</Button>
+          </CardSection>
+        </ItemForm>
       </Card>
     );
   }
@@ -42,5 +40,5 @@ const mapStateToProps = ({ itemForm }) => {
 };
 
 export default connect(mapStateToProps, {
-  clearItemForm, createItem, updateItemForm
+  clearItemForm, createItem, updateItemForm,
 })(ItemCreate);

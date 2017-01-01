@@ -9,3 +9,5 @@ export const itemProp = React.PropTypes.shape({
 export const getUID = () => {
   return (new Date()).getTime();
 };
+
+export * from './Database';

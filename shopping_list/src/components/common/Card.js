@@ -11,6 +11,7 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
+    marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
