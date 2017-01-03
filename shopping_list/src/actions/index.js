@@ -1,4 +1,5 @@
 import { Actions } from 'react-native-router-flux';
+
 import {
   ITEM_CREATE,
   ITEM_DELETE,
@@ -6,16 +7,15 @@ import {
   ITEMS_FETCH,
   ITEM_FORM_CLEAR,
   ITEM_FORM_UPDATE,
-} from '../actions/types';
-import { getUID } from '../utils';
-import Database from '../utils/Database';
+} from '../actions/Types';
+import { Database, getUID } from '../utils';
 
 export const clearItemForm = () => {
   return { type: ITEM_FORM_CLEAR };
 };
 
-export const createItem = ({ name, quantity, price }) => {
-  const newItem = { [getUID()]: { name, quantity, price } };
+export const createItem = ({ checked, name, quantity, price }) => {
+  const newItem = { [getUID()]: { checked, name, quantity, price } };
   return (dispatch, getState) => {
     const { items } = getState();
     Database.store('items', {
@@ -39,13 +39,13 @@ export const deleteItem = (uid) => {
   };
 };
 
-export const editItem = ({ name, quantity, price, uid }) => {
+export const editItem = ({ checked, name, quantity, price, uid }) => {
   return (dispatch, getState) => {
     const { items } = getState();
     Database.store('items', {
-      ...items, [uid]: { name, quantity, price },
+      ...items, [uid]: { checked, name, quantity, price },
     }, () => {
-      dispatch({ type: ITEM_EDIT, payload: { name, quantity, price, uid } });
+      dispatch({ type: ITEM_EDIT, payload: { checked, name, quantity, price, uid } });
       Actions.itemList({ type: 'reset' });
     });
   };

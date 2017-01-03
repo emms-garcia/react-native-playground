@@ -1,9 +1,10 @@
+import _ from 'lodash';
 import {
   ITEMS_FETCH,
   ITEM_CREATE,
   ITEM_DELETE,
   ITEM_EDIT,
-} from '../actions/types';
+} from '../actions/Types';
 
 const initialState = {};
 
@@ -14,7 +15,7 @@ export default (state = initialState, action) => {
       case ITEM_CREATE:
         return { ...state, ...action.payload };
       case ITEM_DELETE:
-        delete state[action.payload];
+        _.unset(state, action.payload);
         return { ...state };
       case ITEM_EDIT:
         return {

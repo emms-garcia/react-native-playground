@@ -1,9 +1,11 @@
 import React from 'react';
-import { Card, CardSection, Input } from './common';
+import { View } from 'react-native';
+
+import { CardSection, Input } from './common';
 
 const ItemForm = ({ autoFocus, children, name, quantity, price, updateItemForm }) => {
   return (
-    <Card>
+    <View>
       <CardSection>
         <Input
           autoFocus={autoFocus}
@@ -19,7 +21,7 @@ const ItemForm = ({ autoFocus, children, name, quantity, price, updateItemForm }
           keyboardType='numeric'
           label='Quantity'
           onChangeText={(value) => updateItemForm('quantity', value)}
-          placeholder='0'
+          placeholder='1'
           value={quantity}
         />
       </CardSection>
@@ -35,11 +37,12 @@ const ItemForm = ({ autoFocus, children, name, quantity, price, updateItemForm }
       </CardSection>
 
       { children }
-    </Card>
+    </View>
   );
 };
 
 ItemForm.propTypes = {
+  checked: React.PropTypes.bool.isRequired,
   name: React.PropTypes.string.isRequired,
   quantity: React.PropTypes.string.isRequired,
   price: React.PropTypes.string.isRequired,

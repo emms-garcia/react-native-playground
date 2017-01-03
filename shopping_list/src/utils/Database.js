@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-export default {
+export const Database = {
   get: (key) => {
     return AsyncStorage.getItem(key)
     .then((result) => {

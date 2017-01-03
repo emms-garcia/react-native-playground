@@ -1,9 +1,9 @@
 import {
   ITEM_FORM_CLEAR,
   ITEM_FORM_UPDATE,
-} from '../actions/types';
+} from '../actions/Types';
 
-const initialState = { name: '', quantity: '0', price: '0' };
+const initialState = { name: '', quantity: '1', price: '0', checked: true };
 
 export default (state = initialState, action) => {
   switch (action.type) {

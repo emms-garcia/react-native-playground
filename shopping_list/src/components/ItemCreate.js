@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { clearItemForm, createItem, updateItemForm } from '../actions';
 import { Button, Card, CardSection } from './common';
 import ItemForm from './ItemForm';
@@ -16,9 +17,9 @@ class ItemCreate extends Component {
   }
 
   onCreate() {
-    const { name, quantity, price } = this.props;
+    const { checked, name, quantity, price } = this.props;
     if (name) {
-      this.props.createItem({ name, quantity, price });
+      this.props.createItem({ checked, name, quantity, price });
     }
   }
 
